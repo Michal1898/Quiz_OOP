@@ -1,31 +1,50 @@
 package Questions;
 
+import java.util.Objects;
+
 public class Question {
     private String question;
+    private String type;
+    private String difficulty;
     private int hashCode=this.hashCode();
-    public Question(String question) {
+    public Question(String question, String type, int difficulty) {
         this.question=question;
+        if (type.toLowerCase().contains("single")) {
+            this.type = "Single choice";
+        }else {
+            this.type = "Multiple choice";
+        }
+        switch (difficulty) {
+            case 1: {
+                this.difficulty = "Easy";
+                break; }
+            case 2: {
+                this.difficulty = "Medium";
+                break;
+            }
+            case 3: {
+                this.difficulty = "Hard";
+                break;
+            }
+            default:{
+                this.difficulty = "None";
+                break;
+            }
+        }
     }
 
     @Override
     public int hashCode() {
-        final int prime = 13;
-        if (this.question == null) {
-            return super.hashCode();
-        }  else {
-            int result = prime * this.question.hashCode();
-            return result;
+        return Objects.hash(question, type, difficulty);
         }
 
-    }
     public String getQuestion() {
         return this.question;
     }
-    public int getHashCode() {
-        return this.hashCode;
-    }
+
+
 
 @Override
 public String toString() {
-    return "Question [question=" + question + ", hashCode=" + hashCode + "]";}
+    return (question + "\n" + "type: " + type + "\n" + "obtiznost: " + difficulty ); }
 }
