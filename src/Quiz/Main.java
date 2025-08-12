@@ -28,8 +28,8 @@ public class Main {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             System.out.println("Soubor otevren.");
             String line;
-            String questionText="";
-            String answerText="";
+            String questionText = "";
+            String answerText = "";
             boolean questionRead = false;
             boolean answerRead = false;
 
@@ -67,9 +67,9 @@ public class Main {
                 }
 
             }
-           // System.out.println(questionText);
-           // System.out.println(possibleAnswers);
-            Question load_question =new Question(questionText, "single", 1);
+            // System.out.println(questionText);
+            // System.out.println(possibleAnswers);
+            Question load_question = new Question(questionText, "single", 1);
             questions.add(load_question);
             for (String answer : possibleAnswers) {
                 Answer load_answer = new Answer(load_question.hashCode(), answer, true);
@@ -93,5 +93,31 @@ public class Main {
 
         }
 
-    }
-}
+
+
+                // How to write a file using Java (4 popular options)
+
+                // FileWriter = Good for small or medium-sized text files
+                // BufferedWriter = Better performance for large amounts of text
+                // PrintWriter = Best for structured data, like reports or logs
+                // FileOutputStream = Best for binary files (e.g., images, audio files)
+                filePath = "src\\FileManagement\\first_output.txt";
+                String textContent = """
+                        Roses are Red
+                        Violets are Blue
+                        BOOTY BOOTY BOOTY
+                        ROCKIN' EVERWHERE!
+                        """;
+
+                try (FileWriter writer = new FileWriter(filePath)) {
+                    writer.write(questions);
+                    System.out.println("File has been written");
+                } catch (FileNotFoundException e) {
+                    System.out.println("Could not locate file location");
+                } catch (IOException e) {
+                    System.out.println("Could not write file");
+                }
+            }
+        }
+
+

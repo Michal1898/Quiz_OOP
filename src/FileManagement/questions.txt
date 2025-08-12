@@ -8,7 +8,7 @@ ANSWER_START
 cerna
 ANSWER_END
 ANSWER_START
-cervena 
+cervena
 ANSWER_END
 
 
