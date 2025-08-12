@@ -1,14 +1,348 @@
 QUESTION_START
-Na pasece se pase bily kun. Jakou ma barvu?
+1; single;Na pasece se pase bily kun. Jakou ma barvu?
 QUESTION_END
 ANSWER_START
-bila
+1;bila
 ANSWER_END
 ANSWER_START
-cerna
+0;cerna
 ANSWER_END
 ANSWER_START
-cervena
+0;cervena
+ANSWER_END
+ANSWER_START
+0;modra
+ANSWER_END
+
+QUESTION_START
+1; single;Kolik je 2+2?
+QUESTION_END
+ANSWER_START
+1;2+2
+ANSWER_END
+ANSWER_START
+0;0
+ANSWER_END
+ANSWER_START
+0;-3
+ANSWER_END
+ANSWER_START
+0;7
+ANSWER_END
+
+QUESTION_START
+2; single;Do jakeho pismene chodi kun po sachovnici?
+QUESTION_END
+ANSWER_START
+0;O
+ANSWER_END
+ANSWER_START
+0;X
+ANSWER_END
+ANSWER_START
+1;L
+ANSWER_END
+ANSWER_START
+0;I
+ANSWER_END
+
+QUESTION_START
+3; single;Kdo vynalezl parni stroj?
+QUESTION_END
+ANSWER_START
+0;James Watt
+ANSWER_END
+ANSWER_START
+1; Nelze urcit jedineho vynalezce.
+ANSWER_END
+ANSWER_START
+0;Thomas Savery
+ANSWER_END
+ANSWER_START
+0;Denis Papin
+ANSWER_END
+
+QUESTION_START
+3; multiple;Sqrt(x*x-36) = 8. Kolik je x?
+QUESTION_END
+ANSWER_START
+0;13
+ANSWER_END
+ANSWER_START
+1;10
+ANSWER_END
+ANSWER_START
+1;-10
+ANSWER_END
+ANSWER_START
+0;I
+ANSWER_END
+
+QUESTION_START
+2; single;Kolik je Pi (ludolfovo cislo?
+QUESTION_END
+ANSWER_START
+0; 3.1452
+ANSWER_END
+ANSWER_START
+1;priblizne 3.1
+ANSWER_END
+ANSWER_START
+0;22/7
+ANSWER_END
+
+QUESTION_START
+2; single; Ve kterem meste se kona kazdy rok nejvetsi festival sachu a deskovych her na svete?
+QUESTION_END
+ANSWER_START
+0; New York
+ANSWER_END
+ANSWER_START
+0; Londyn
+ANSWER_END
+ANSWER_START
+1; Pardubice
+ANSWER_END
+ANSWER_START
+0; Moskva
+ANSWER_END
+
+QUESTION_START
+2; single; Ve kterem meste se kona kazdy rok nejvetsi festival sachu a deskovych her na svete?
+QUESTION_END
+ANSWER_START
+0; New York
+ANSWER_END
+ANSWER_START
+0; Londyn
+ANSWER_END
+ANSWER_START
+1; Pardubice
+ANSWER_END
+ANSWER_START
+0; Moskva
+ANSWER_END
+
+QUESTION_START
+1; single; Prvni American, ktery se stal mistrem sveta v sachu, je
+QUESTION_END
+ANSWER_START
+0; Samuel Reshewsky
+ANSWER_END
+ANSWER_START
+1; Robert James Fischer
+ANSWER_END
+ANSWER_START
+0; Lubomir Kavalek
+ANSWER_END
+ANSWER_START
+0; Fabiano Caruana
 ANSWER_END
 
 
+QUESTION_START
+2; single; Kolik Wattu ma jeden kun (HP)?
+QUESTION_END
+ANSWER_START
+0; 1
+ANSWER_END
+ANSWER_START
+0; 1000
+ANSWER_END
+ANSWER_START
+0; 1200
+ANSWER_END
+ANSWER_START
+1; 746
+ANSWER_END
+
+QUESTION_START
+1; multi; Cim je vyznacuje objektove orientovane programovani?
+QUESTION_END
+ANSWER_START
+0; hybernace
+ANSWER_END
+ANSWER_START
+1; zapouzdreni (encapsulation)
+ANSWER_END
+ANSWER_START
+1; dedicnost (inheritance)
+ANSWER_END
+ANSWER_START
+1; vysoky stupen abstrakce (abstraction)
+ANSWER_END
+ANSWER_START
+0; vysoky stupen abstrakce (abstraction)
+ANSWER_END
+
+QUESTION_START
+1; multi; Jake jsou vyhody objektove orientovaneho programovani?
+QUESTION_END
+ANSWER_START
+0; Zadne
+ANSWER_END
+ANSWER_START
+1; Prehlednost
+ANSWER_END
+ANSWER_START
+1; Znovu pouzitelny kod
+ANSWER_END
+ANSWER_START
+1; bezpecnost (ostychavy kod)
+ANSWER_END
+
+QUESTION_START
+1; multi; Jake jsou nevyhody jazyku Java?
+QUESTION_END
+ANSWER_START
+0; Zadne, jenom sama pozitiva
+ANSWER_END
+ANSWER_START
+1; Obtizny pro zacatecniky
+ANSWER_END
+ANSWER_START
+1; Jednoduche programy jsou delsi a komplikovanejsi nez v jinych jazycich (napr Python)
+ANSWER_END
+ANSWER_START
+1; vyssi naroky na vykon a pamet.
+ANSWER_END
+
+QUESTION_START
+3; single; Rukopis kralovedvorsky, ktery odstartoval ceske Narodni obrozeni:
+QUESTION_END
+ANSWER_START
+0; je padelek ze zacatku 19. stoleti
+ANSWER_END
+ANSWER_START
+0; Je vzacna pamatka pochazejici z 11. stoleti
+ANSWER_END
+ANSWER_START
+1; Je pravy, ale Vaclav Hanka ho spatne datoval. Zrejme pochazi z 16. stoleti
+ANSWER_END
+
+QUESTION_START
+2; multi; Jake jsou vyhody jazyku Java?
+QUESTION_END
+ANSWER_START
+0; Zadne, je to jenom pro zlost
+ANSWER_END
+ANSWER_START
+1; Objektove orientovany pristup
+ANSWER_END
+ANSWER_START
+1; Nezavisly na platforme
+ANSWER_END
+ANSWER_START
+1; Multithreading
+ANSWER_END
+
+QUESTION_START
+3; single; Kdo napsal Romea a Julii, Kupce benatskeho, ci Sen noci svatojanske?
+QUESTION_END
+ANSWER_START
+0; Wiliam Shakespeare, to je prece jasne!
+ANSWER_END
+ANSWER_START
+1; Edward de Were, hrabe z Oxfordu (pravdepodobne)
+ANSWER_END
+ANSWER_START
+0; Christopher Marlove
+ANSWER_END
+ANSWER_START
+0; Francis Bacon 
+ANSWER_END
+
+
+QUESTION_START
+3; single; Kdo je autorem hry Tetris?
+QUESTION_END
+ANSWER_START
+1; Alexey Pajitnov (SSSR)
+ANSWER_END
+ANSWER_START
+0; Vadim Gerasimov (SSSR)
+ANSWER_END
+ANSWER_START
+0; Bill Gates (USA)
+ANSWER_END
+ANSWER_START
+0; Steve Jobs (USA)
+ANSWER_END
+
+QUESTION_START
+3; single; 
+Jsi ve finale vedomostni souteze. Stojis s moderatorem pred 3 naprosto stejnymi dvermi. 
+Za 1 dvirky je automobil, za zbyvajicimi 2 dvirky je koza. 
+Co je za kterymi dvermi vi pouze moderator.
+Vyberes si namatkou jedny dvere. Moderator otevre jine dvere, nez na ktere jsi ukazal. 
+A ze dveri vykoukne koza.
+Pote se te moderator s usmevem zepta:"Nechcete si svoji volbu rozmyslet?"
+Mel by jsi ho poslechnout?
+QUESTION_END
+ANSWER_START
+0; Je to uplne jedno. 
+Pravdepodobnost, ze auto je za dvermi, na ktere jsem ukazal, je stale stejna!
+ANSWER_END
+ANSWER_START
+0; Urcite si trvat na svem! Vybral sis spravne a moderator te chce zmast!
+ANSWER_END
+ANSWER_START
+1; Mel bys zmenit sve rozhodnuti. 
+Pravdepodnost, ze auto je za druhymi dvermi, nez na ktere ukazujes, se signifikantne zvysila.
+ANSWER_END
+
+QUESTION_START
+3; single; 
+Experiment: Mas dokonale vyvazenou hraci kostku. Pozves si velky pocet dobrovolniku. 
+Ti postupne prichazeji ke stolku s kostkou v nahodnem poradi. 
+Kazdy dobrovolnik si bere kostku a hazi s ni, dokud nehodi 6. 
+Zaznamenas cislo v poradi dobrovolnika a pocet pokusu, ktere potreboval na hozeni 6. 
+Po skonceni pokusu dobrovolnik ihned odchazi. 
+Kdyz experiment skonci, kolik bude nejcastejsi pocet pokusu, potrebnych aby padla 6?
+QUESTION_END
+ANSWER_START
+0; 6
+ANSWER_END
+ANSWER_START
+0; Nejake cislo mezi 4 a 10
+ANSWER_END
+ANSWER_START
+1; 1
+ANSWER_END
+ANSWER_START
+0; 10
+ANSWER_END
+
+QUESTION_START
+3; single; 
+Kdo napsal prvni sachovy program a sehral prvni sachovou partii clovek proti pocitaci
+QUESTION_END
+ANSWER_START
+1; Alan Turing (Anglie)
+ANSWER_END
+ANSWER_START
+0; Michal Mojsejevich Botvinnik (SSSR)
+ANSWER_END
+ANSWER_START
+0; Steve Jobs (USA)
+ANSWER_END
+ANSWER_START
+0; Jara Cimrman (Rakousko-Uhersko)
+ANSWER_END
+
+QUESTION_START
+2; single; 
+Kolik je 13/0 ?
+QUESTION_END
+ANSWER_START
+0; 13
+ANSWER_END
+ANSWER_START
+0; 0
+ANSWER_END
+ANSWER_START
+0; nekonecno
+ANSWER_END
+ANSWER_START
+1; Nulou nelze delit
+ANSWER_END

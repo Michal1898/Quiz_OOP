@@ -3,15 +3,13 @@ package Quiz;
 import Answers.Answer;
 import Questions.Question;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
+
         System.out.println("Hello and welcome!");
 
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -32,6 +30,10 @@ public class Main {
             String answerText = "";
             boolean questionRead = false;
             boolean answerRead = false;
+            String testType="";
+            int difficulty=0;
+            int lastQuestionHash=0;
+
 
             ArrayList<String> possibleAnswers = new ArrayList<>();
 
@@ -48,17 +50,25 @@ public class Main {
                     questionRead = false;
 
                 } else if (line.equals(QUESTION_END)) {
-                    System.out.println(questionText);
+                    String[] splitQuestion = questionText.split(";");
+                    difficulty = Integer.parseInt(splitQuestion[0]);
+                    String questionType =splitQuestion[1];
+                    questionText = splitQuestion[2];
+                    Question load_question=new Question(questionText, questionType,difficulty );
+                    questions.add(load_question);
+                    lastQuestionHash = load_question.hashCode();
+
 
                 } else if (line.equals(ANSWER_END)) {
-                    possibleAnswers.add(answerText);
-                    //System.out.println();
-                    //System.out.println(possibleAnswers);
+                    String[] splitAnswer = answerText.split(";");
+                    boolean correct = splitAnswer[0].contains("1");
+                    Answer load_answer = new Answer(lastQuestionHash, splitAnswer[1], correct);
+                    answers.add(load_answer);
                 } else {
                     if (answerRead) {
-                        answerText += line;
+                        answerText += line+"\n";
                     } else if (questionRead) {
-                        questionText += line;
+                        questionText += line+"\n";
                     } else {
                         // this case should never occur
                         // but better save then sorry!
@@ -67,15 +77,7 @@ public class Main {
                 }
 
             }
-            // System.out.println(questionText);
-            // System.out.println(possibleAnswers);
-            Question load_question = new Question(questionText, "single", 1);
-            questions.add(load_question);
-            for (String answer : possibleAnswers) {
-                Answer load_answer = new Answer(load_question.hashCode(), answer, true);
-                answers.add(load_answer);
-            }
-
+            // end of file data processing
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
         } catch (IOException e) {
@@ -83,13 +85,13 @@ public class Main {
         }
 
         for (Question question : questions) {
-
-
+            System.out.println(question);
             for (Answer answer : answers) {
                 if (question.hashCode() == answer.getHashCode()) {
                     System.out.println(answer);
                 }
             }
+            System.out.println("\n");
 
         }
 
@@ -101,22 +103,22 @@ public class Main {
                 // BufferedWriter = Better performance for large amounts of text
                 // PrintWriter = Best for structured data, like reports or logs
                 // FileOutputStream = Best for binary files (e.g., images, audio files)
-                filePath = "src\\FileManagement\\first_output.txt";
-                String textContent = """
-                        Roses are Red
-                        Violets are Blue
-                        BOOTY BOOTY BOOTY
-                        ROCKIN' EVERWHERE!
-                        """;
-
-                try (FileWriter writer = new FileWriter(filePath)) {
-                    writer.write(questions);
-                    System.out.println("File has been written");
-                } catch (FileNotFoundException e) {
-                    System.out.println("Could not locate file location");
-                } catch (IOException e) {
-                    System.out.println("Could not write file");
-                }
+//                filePath = "src\\FileManagement\\first_output.txt";
+//                String textContent = """
+//                        Roses are Red
+//                        Violets are Blue
+//                        BOOTY BOOTY BOOTY
+//                        ROCKIN' EVERWHERE!
+//                        """;
+//
+//                try (FileWriter writer = new FileWriter(filePath)) {
+//                    writer.write(textContent);
+//                    System.out.println("File has been written");
+//                } catch (FileNotFoundException e) {
+//                    System.out.println("Could not locate file location");
+//                } catch (IOException e) {
+//                    System.out.println("Could not write file");
+//                }
             }
         }
 
