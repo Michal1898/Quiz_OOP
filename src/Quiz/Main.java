@@ -16,68 +16,73 @@ public class Main {
 
         ArrayList<Question> questions = new ArrayList<Question>();
         ArrayList<Answer> answers = new ArrayList<Answer>();
-        Question question1 = new Question("Na pasece se pase bily kun. Jakou ma barvu?", "Single",1);
-        Question question2 = new Question("Kolik je 2+2?", "multi",2);
-        Question question3 = new Question("Kdo vynalezl parni stroj?", "Multi",3);
-        Answer answer1 = new Answer(question1.hashCode(), "bily", true);
-        Answer answer2 = new Answer(question1.hashCode(), "cerveny", false);
-        Answer answer3 = new Answer(question1.hashCode(), "cerny", false);
-        Answer answer4 = new Answer(question1.hashCode(), "grosovany", false);
 
-        Answer answer5 = new Answer(question2.hashCode(), "0", false);
-        Answer answer6 = new Answer(question2.hashCode(), "2", false);
-        Answer answer7 = new Answer(question2.hashCode(), "-2", false);
-        Answer answer8 = new Answer(question2.hashCode(), "4", true);
-
-        Answer answer9 = new Answer(question3.hashCode(), "Denis Papin", false);
-        Answer answer10 = new Answer(question3.hashCode(), "Thomas Newcomen", false);
-        Answer answer11 = new Answer(question3.hashCode(), "James Watt", false);
-        Answer answer12 = new Answer(question3.hashCode(), "Richard Threvithick", false);
-        Answer answer13 = new Answer(question3.hashCode(), "Nelze odpovedet. Parni stroj nema jedineho tvurce.", true);
-
-
-
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
-
-        answers.add(answer1);
-        answers.add(answer2);
-        answers.add(answer3);
-        answers.add(answer4);
-
-        answers.add(answer5);
-        answers.add(answer6);
-        answers.add(answer7);
-        answers.add(answer8);
-
-        answers.add(answer9);
-        answers.add(answer10);
-        answers.add(answer11);
-        answers.add(answer12);
-        answers.add(answer13);
 
         String filePath = "src\\FileManagement\\questions.txt";
-        System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
-        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+        final String QUESTION_START = "QUESTION_START";
+        final String QUESTION_END = "QUESTION_END";
+        final String ANSWER_START = "ANSWER_START";
+        final String ANSWER_END = "ANSWER_END";
+
+        System.out.println("Present Project Directory : " + System.getProperty("user.dir"));
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             System.out.println("Soubor otevren.");
             String line;
-            while((line = reader.readLine()) != null){
-                System.out.println(line);
+            String questionText="";
+            String answerText="";
+            boolean questionRead = false;
+            boolean answerRead = false;
+
+            ArrayList<String> possibleAnswers = new ArrayList<>();
+
+            while ((line = reader.readLine()) != null) {
+                //System.out.println(line);
+                if (line.equals(QUESTION_START)) {
+                    questionText = "";
+                    questionRead = true;
+                    answerRead = false;
+
+                } else if (line.equals(ANSWER_START)) {
+                    answerText = "";
+                    answerRead = true;
+                    questionRead = false;
+
+                } else if (line.equals(QUESTION_END)) {
+                    System.out.println(questionText);
+
+                } else if (line.equals(ANSWER_END)) {
+                    possibleAnswers.add(answerText);
+                    //System.out.println();
+                    //System.out.println(possibleAnswers);
+                } else {
+                    if (answerRead) {
+                        answerText += line;
+                    } else if (questionRead) {
+                        questionText += line;
+                    } else {
+                        // this case should never occur
+                        // but better save then sorry!
+                        System.out.println("neco je spatne");
+                    }
+                }
+
+            }
+           // System.out.println(questionText);
+           // System.out.println(possibleAnswers);
+            Question load_question =new Question(questionText, "single", 1);
+            questions.add(load_question);
+            for (String answer : possibleAnswers) {
+                Answer load_answer = new Answer(load_question.hashCode(), answer, true);
+                answers.add(load_answer);
             }
 
-        }
-        catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found!");
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Something went wrong!");
         }
 
         for (Question question : questions) {
-
-
-
 
 
             for (Answer answer : answers) {
@@ -88,5 +93,5 @@ public class Main {
 
         }
 
-        }
     }
+}
