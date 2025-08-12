@@ -3,6 +3,7 @@ package Quiz;
 import Answers.Answer;
 import Questions.Question;
 
+import java.io.*;
 import java.util.ArrayList;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -56,9 +57,28 @@ public class Main {
         answers.add(answer12);
         answers.add(answer13);
 
+        String filePath = "src\\FileManagement\\questions.txt";
+        System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            System.out.println("Soubor otevren.");
+            String line;
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+
+        }
+        catch(FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+        catch(IOException e) {
+            System.out.println("Something went wrong!");
+        }
 
         for (Question question : questions) {
-            System.out.println(question);
+
+
+
+
 
             for (Answer answer : answers) {
                 if (question.hashCode() == answer.getHashCode()) {
