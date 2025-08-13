@@ -100,6 +100,7 @@ public class Main {
 //
 //        }
 // Begin of test
+        String[] paragraphNameCoder={"a", "b", "c", "d", "e", "f"};
         System.out.println("\n");
         System.out.println("Kviz zacina!");
         int questionCount = 7;
@@ -132,7 +133,8 @@ public class Main {
             System.out.println("Otazka c: " + (a+1));
             System.out.println(randomQuestion);
             for (Answer answer : randomAnswers) {
-                System.out.println((randomAnswers.indexOf(answer)+1) + " : " + answer);
+                String paragraphName = paragraphNameCoder[randomAnswers.indexOf(answer)];
+                System.out.println(paragraphName + " ) " + answer);
             }
         }
 
