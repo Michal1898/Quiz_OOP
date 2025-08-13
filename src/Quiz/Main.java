@@ -66,13 +66,30 @@ public class Main {
                     // Evalution of SingleChoice answer
                     possiblePoints++;
                     String yourAnswer;
-                    do {
-                        System.out.println("Oznac spravnou odpoved: ");
-                        yourAnswer = userInput.nextLine().toLowerCase().trim();
-                    } while (yourAnswer.length() != 1 && !paragraphNameCoder.contains(yourAnswer));
+                    int answerIndex;
+                    while (true) {
+                        try {
+                            System.out.println("Oznac spravnou odpoved: ");
+                            yourAnswer = userInput.nextLine().toLowerCase().trim();
+                            answerIndex = paragraphNameCoder.indexOf(yourAnswer);
+                            if (yourAnswer.length() != 1) {
+                                throw new Exception("Zadej prave 1 znak!");
+                            } else if (!Character.isLetter(yourAnswer.charAt(0))) {
+                                throw new Exception("Musis zadat pismeno!");
+                            } else if (Integer.valueOf(yourAnswer.charAt(0) - 96) > possibleAnswers.size()) {
+                                throw new Exception("Musis si vybrat jednu z nabizenych moznosti!");
+                            }
+                            break;
+
+                        } catch (Exception e) {
+                            System.out.println("Invalid input!" + e.getMessage());
+                        }
+
+                    }
+
 
                     //earnedPoints
-                    int answerIndex = paragraphNameCoder.indexOf(yourAnswer);
+
                     Answer markedAnswer = possibleAnswers.get(answerIndex);
 
                     System.out.println("Tvoje odpoved: \n" + markedAnswer);
