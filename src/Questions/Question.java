@@ -3,10 +3,9 @@ package Questions;
 import java.util.Objects;
 
 public class Question {
-    private String question;
-    private String type;
-    private String difficulty;
-    private int hashCode = this.hashCode();
+    private final String question;
+    private final String type;
+    private final String difficulty;
 
     public Question(String question, String type, int difficulty) {
         this.question = question;

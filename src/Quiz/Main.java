@@ -56,7 +56,7 @@ public class Main {
                 System.out.print(paragraphName + " ) " + answer);
             }
             Scanner userInput = new Scanner(System.in);
-            if (randomQuestion.getType() == "Single choice") {
+            if (randomQuestion.getType().equals("Single choice")) {
                 // Evalution of SingleChoice answer
                 possiblePoints++;
                 System.out.println("Oznac spravnou odpoved: ");
@@ -145,7 +145,6 @@ public class Main {
             String answerText = "";
             boolean questionRead = false;
             boolean answerRead = false;
-            String testType = "";
             int difficulty = 0;
             int lastQuestionHash = 0;
 
