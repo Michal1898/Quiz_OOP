@@ -21,7 +21,7 @@ public class Answer {
         return this.hashCode;
     }
 
-    public boolean isAnswerCorrect() {
+    public boolean getAnswerCorrect() {
         return this.answerCorrect;
     }
 

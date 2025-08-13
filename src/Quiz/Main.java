@@ -2,13 +2,11 @@ package Quiz;
 
 import Answers.Answer;
 import Questions.Question;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,7 +34,6 @@ public class Main {
             String testType = "";
             int difficulty = 0;
             int lastQuestionHash = 0;
-
 
             ArrayList<String> possibleAnswers = new ArrayList<>();
 
@@ -115,6 +112,7 @@ public class Main {
         System.out.println("Kviz zacina!");
         int questionCount = 7;
         int possiblePoints = 0;
+        int earnedPoints = 0;
         for(int a=0; a<questionCount; ++a){
             Collections.shuffle(questions);
 //        for (Question question : questions) {
@@ -130,23 +128,44 @@ public class Main {
             // and remove it from pool
             questions.remove(0);
             int randomQuestionHash = randomQuestion.hashCode();
-            ArrayList<Answer> randomAnswers = new ArrayList<Answer>();
+            ArrayList<Answer> possibleAnswers = new ArrayList<Answer>();
             for (Answer answer : answers) {
                 if (randomQuestionHash == answer.getHashCode()) {
-                    randomAnswers.add(answer);
+                    possibleAnswers.add(answer);
                 }
 
             }
             // random shuffle of answer order
-            Collections.shuffle(randomAnswers);
+            Collections.shuffle(possibleAnswers);
             System.out.println("\n");
             System.out.println("Otazka c: " + (a+1));
             System.out.println(randomQuestion);
-            for (Answer answer : randomAnswers) {
-                int paragraphIndex=randomAnswers.indexOf(answer);
+
+            for (Answer answer : possibleAnswers) {
+                int paragraphIndex=possibleAnswers.indexOf(answer);
                 String paragraphName = paragraphNameCoder.get(paragraphIndex);
                 System.out.print(paragraphName + " ) " + answer);
             }
+            Scanner userInput = new Scanner(System.in);
+            if (randomQuestion.getType()=="Single choice"){
+                possiblePoints++;
+                System.out.println("Oznac spravnou odpoved: ");
+                String yourAnswer = userInput.nextLine().toLowerCase().trim();
+                int answerIndex = paragraphNameCoder.indexOf(yourAnswer);
+                System.out.println("Answer index:" +answerIndex);
+                Answer markedAnswer=possibleAnswers.get(answerIndex);
+
+                System.out.println("Tvoje odpoved: \n" + markedAnswer);
+                if(markedAnswer.getAnswerCorrect()){
+                    earnedPoints++;
+                    System.out.println("Uhodl jsi. Gratuluji. ");
+                } else {
+                    System.out.println("Chybna odpoved: \n " + markedAnswer);
+                }
+            }
+            System.out.println("Prubezne skore:");
+            System.out.println("Aktualne mas " + earnedPoints + " z " + possiblePoints + " moznych");
+            //System.out.println("To je " + (100*earnedPoints/possiblePoints)+ " %.");
         }
 
     }
