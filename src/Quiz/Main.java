@@ -9,13 +9,10 @@ public class Main {
     public static ArrayList<Question> questions = new ArrayList<Question>();
     public static ArrayList<Answer> answers = new ArrayList<Answer>();
 
+
     public static void main(String[] args) {
 
 
-        printIntroduction();
-        readQAfromFile();
-
-        // Initialise coder od letters and numbers by answers
         ArrayList<String> paragraphNameCoder = new ArrayList<String>();
         paragraphNameCoder.add("a");
         paragraphNameCoder.add("b");
@@ -24,6 +21,12 @@ public class Main {
         paragraphNameCoder.add("e");
         paragraphNameCoder.add("f");
         paragraphNameCoder.add("g");
+
+        printIntroduction();
+        readQAfromFile();
+
+        // Initialise coder od letters and numbers by answers
+
 
         // New quiz starts
         System.out.println("Kviz zacina!");
@@ -59,10 +62,14 @@ public class Main {
             if (randomQuestion.getType().equals("Single choice")) {
                 // Evalution of SingleChoice answer
                 possiblePoints++;
-                System.out.println("Oznac spravnou odpoved: ");
-                String yourAnswer = userInput.nextLine().toLowerCase().trim();
+                String yourAnswer;
+                do{
+                    System.out.println("Oznac spravnou odpoved: ");
+                    yourAnswer = userInput.nextLine().toLowerCase().trim();
+                } while(yourAnswer.length() != 1 && !paragraphNameCoder.contains(yourAnswer) );
+
+                //earnedPoints
                 int answerIndex = paragraphNameCoder.indexOf(yourAnswer);
-                //System.out.println("Answer index:" +answerIndex);
                 Answer markedAnswer = possibleAnswers.get(answerIndex);
 
                 System.out.println("Tvoje odpoved: \n" + markedAnswer);
@@ -72,6 +79,7 @@ public class Main {
                 } else {
                     System.out.println("Chybna odpoved. Cha Cha Chaa!");
                 }
+
             } else {
                 // evalution of multipleChoice answer
                 int thisQuestionPossiblePoints = 0;
@@ -109,6 +117,11 @@ public class Main {
             if (possiblePoints != 0) {
                 System.out.println("To je " + (100 * earnedPoints / possiblePoints) + " %.");
             }
+        }
+        System.out.println("Konec testu:");
+        System.out.println("Celkove jsi ziskal " + earnedPoints + " z " + possiblePoints + " moznych");
+        if (possiblePoints != 0) {
+            System.out.println("To je " + (100 * earnedPoints / possiblePoints) + " %.");
         }
 
     }
