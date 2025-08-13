@@ -2,11 +2,7 @@ package Quiz;
 
 import Answers.Answer;
 import Questions.Question;
-import org.w3c.dom.ls.LSOutput;
-
-import javax.swing.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
