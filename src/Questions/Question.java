@@ -47,7 +47,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return ("type: " + type + "\n" + "obtiznost: " + difficulty +"\n"+ question );
+        return ("type: " + type + "\n" + "obtiznost: " + difficulty + "\n" + question);
     }
 
 
