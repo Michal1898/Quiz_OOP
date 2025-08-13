@@ -76,7 +76,7 @@ public class Main {
                                 throw new Exception("Zadej prave 1 znak!");
                             } else if (!Character.isLetter(yourAnswer.charAt(0))) {
                                 throw new Exception("Musis zadat pismeno!");
-                            } else if (Integer.valueOf(yourAnswer.charAt(0) - 96) > possibleAnswers.size()) {
+                            } else if (Integer.valueOf(yourAnswer.charAt(0) - 97) >= possibleAnswers.size()) {
                                 throw new Exception("Musis si vybrat jednu z nabizenych moznosti!");
                             }
                             break;
@@ -112,9 +112,32 @@ public class Main {
                     }
                     possiblePoints += thisQuestionPossiblePoints;
 
-                    System.out.println("Zadej svoji odpoved (mozna je vice odpovedi spravnych)");
-                    String yourAnswer = userInput.nextLine().toLowerCase().trim();
-                    String[] yourAnswers = yourAnswer.split(" ");
+                    String yourAnswer;
+                    String[] yourAnswers;
+                    while (true) {
+                        try {
+                            System.out.println("Zadej svoji odpoved (mozna je vice odpovedi spravnych)");
+                            yourAnswer = userInput.nextLine().toLowerCase().trim();
+                            yourAnswers = yourAnswer.split(" ");
+                            if (Arrays.stream(yourAnswers).count() > possibleAnswers.size()) {
+                                throw new Exception("Zadej maximalne tolik znaku, kolik mas moznosti");
+                            }
+                            for (String oneAnswer : yourAnswers) {
+                                if (oneAnswer.length() != 1) {
+                                    throw new Exception("Zadej prave 1 znak!");
+                                } else if (!Character.isLetter(oneAnswer.charAt(0))) {
+                                    throw new Exception("Musis zadat pismeno!");
+                                } else if (Integer.valueOf(oneAnswer.charAt(0) - 97) >= possibleAnswers.size()) {
+                                    throw new Exception("Musis si vybrat jednu z nabizenych moznosti!");
+                                }
+
+                            }
+                            break;
+
+                        } catch (Exception e) {
+                            System.out.println("Invalid input!" + e.getMessage());
+                        }
+                    }
                     for (String oneAnswer : yourAnswers) {
                         int answerIndex = paragraphNameCoder.indexOf(oneAnswer);
                         Answer markedAnswer = possibleAnswers.get(answerIndex);
