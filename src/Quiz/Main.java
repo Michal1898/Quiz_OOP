@@ -6,6 +6,8 @@ import Questions.Question;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,9 +32,9 @@ public class Main {
             String answerText = "";
             boolean questionRead = false;
             boolean answerRead = false;
-            String testType="";
-            int difficulty=0;
-            int lastQuestionHash=0;
+            String testType = "";
+            int difficulty = 0;
+            int lastQuestionHash = 0;
 
 
             ArrayList<String> possibleAnswers = new ArrayList<>();
@@ -52,10 +54,11 @@ public class Main {
                 } else if (line.equals(QUESTION_END)) {
                     String[] splitQuestion = questionText.split(";");
                     difficulty = Integer.parseInt(splitQuestion[0]);
-                    String questionType =splitQuestion[1];
+                    String questionType = splitQuestion[1];
                     questionText = splitQuestion[2];
-                    Question load_question=new Question(questionText, questionType,difficulty );
+                    Question load_question = new Question(questionText, questionType, difficulty);
                     questions.add(load_question);
+                    //append question to the list
                     lastQuestionHash = load_question.hashCode();
 
 
@@ -64,11 +67,12 @@ public class Main {
                     boolean correct = splitAnswer[0].contains("1");
                     Answer load_answer = new Answer(lastQuestionHash, splitAnswer[1], correct);
                     answers.add(load_answer);
+                    // append answer to the list
                 } else {
                     if (answerRead) {
-                        answerText += line+"\n";
+                        answerText += line + "\n";
                     } else if (questionRead) {
-                        questionText += line+"\n";
+                        questionText += line + "\n";
                     } else {
                         // this case should never occur
                         // but better save then sorry!
@@ -84,42 +88,53 @@ public class Main {
             System.out.println("Something went wrong!");
         }
 
-        for (Question question : questions) {
-            System.out.println(question);
-            for (Answer answer : answers) {
-                if (question.hashCode() == answer.getHashCode()) {
-                    System.out.println(answer);
-                }
-            }
-            System.out.println("\n");
-
-        }
-
-
-
-                // How to write a file using Java (4 popular options)
-
-                // FileWriter = Good for small or medium-sized text files
-                // BufferedWriter = Better performance for large amounts of text
-                // PrintWriter = Best for structured data, like reports or logs
-                // FileOutputStream = Best for binary files (e.g., images, audio files)
-//                filePath = "src\\FileManagement\\first_output.txt";
-//                String textContent = """
-//                        Roses are Red
-//                        Violets are Blue
-//                        BOOTY BOOTY BOOTY
-//                        ROCKIN' EVERWHERE!
-//                        """;
-//
-//                try (FileWriter writer = new FileWriter(filePath)) {
-//                    writer.write(textContent);
-//                    System.out.println("File has been written");
-//                } catch (FileNotFoundException e) {
-//                    System.out.println("Could not locate file location");
-//                } catch (IOException e) {
-//                    System.out.println("Could not write file");
+        // Print list of all questions in quiz and their solution
+        // only for testing
+//        for (Question question : questions) {
+//            System.out.println(question);
+//            for (Answer answer : answers) {
+//                if (question.hashCode() == answer.getHashCode()) {
+//                    System.out.println(answer);
 //                }
+//            }
+//
+//        }
+// Begin of test
+        System.out.println("\n");
+        System.out.println("Kviz zacina!");
+        int questionCount = 7;
+        int possiblePoints = 0;
+        for(int a=0; a<questionCount; ++a){
+            Collections.shuffle(questions);
+//        for (Question question : questions) {
+//            System.out.println(question);
+//            for (Answer answer : answers) {
+//                if (question.hashCode() == answer.getHashCode()) {
+//                    System.out.println(answer);
+//                }
+//            }
+//        }
+            // Select random question
+            Question randomQuestion = questions.get(0);
+            // and remove it from pool
+            questions.remove(0);
+            int randomQuestionHash = randomQuestion.hashCode();
+            ArrayList<Answer> randomAnswers = new ArrayList<Answer>();
+            for (Answer answer : answers) {
+                if (randomQuestionHash == answer.getHashCode()) {
+                    randomAnswers.add(answer);
+                }
+
+            }
+            // random shuffle of answer order
+            Collections.shuffle(randomAnswers);
+            System.out.println("\n");
+            System.out.println("Otazka c: " + (a+1));
+            System.out.println(randomQuestion);
+            for (Answer answer : randomAnswers) {
+                System.out.println((randomAnswers.indexOf(answer)+1) + " : " + answer);
             }
         }
 
-
+    }
+}

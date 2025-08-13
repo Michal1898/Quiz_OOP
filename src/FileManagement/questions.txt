@@ -92,19 +92,19 @@ ANSWER_START
 ANSWER_END
 
 QUESTION_START
-2; single; Ve kterem meste se kona kazdy rok nejvetsi festival sachu a deskovych her na svete?
+2; single; Kolik bitu ma jenom kilobit dat?
 QUESTION_END
 ANSWER_START
-0; New York
+0; 1000
 ANSWER_END
 ANSWER_START
-0; Londyn
+1; 1024
 ANSWER_END
 ANSWER_START
-1; Pardubice
+0; 960
 ANSWER_END
 ANSWER_START
-0; Moskva
+0; 1500
 ANSWER_END
 
 QUESTION_START
