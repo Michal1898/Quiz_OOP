@@ -134,7 +134,7 @@ public class Main {
             System.out.println(randomQuestion);
             for (Answer answer : randomAnswers) {
                 String paragraphName = paragraphNameCoder[randomAnswers.indexOf(answer)];
-                System.out.println(paragraphName + " ) " + answer);
+                System.out.print(paragraphName + " ) " + answer);
             }
         }
 

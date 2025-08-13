@@ -5,18 +5,24 @@ public class Answer {
     private String answer;
     private boolean answerCorrect;
 
-    public Answer(int hashCode, String answer, boolean isCorrect ){
+    public Answer(int hashCode, String answer, boolean isCorrect) {
         this.hashCode = hashCode;
         this.answer = answer;
         this.answerCorrect = isCorrect;
     }
+
     @Override
     public String toString() {
-       String result = this.answer +  " " + this.answerCorrect;
-       return result;
+        String result = this.answer;
+        return result;
     }
+
     public int getHashCode() {
-        return hashCode;
+        return this.hashCode;
+    }
+
+    public boolean isAnswerCorrect() {
+        return this.answerCorrect;
     }
 
 }
