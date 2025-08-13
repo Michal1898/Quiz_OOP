@@ -18,7 +18,7 @@ QUESTION_START
 1; single;Kolik je 2+2?
 QUESTION_END
 ANSWER_START
-1;2+2
+1;4
 ANSWER_END
 ANSWER_START
 0;0
@@ -75,11 +75,11 @@ ANSWER_START
 1;-10
 ANSWER_END
 ANSWER_START
-0;I
+0;8
 ANSWER_END
 
 QUESTION_START
-2; single;Kolik je Pi (ludolfovo cislo?
+2; single;Kolik je Pi (ludolfovo cislo)?
 QUESTION_END
 ANSWER_START
 0; 3.1452
@@ -172,7 +172,7 @@ ANSWER_START
 1; vysoky stupen abstrakce (abstraction)
 ANSWER_END
 ANSWER_START
-0; vysoky stupen abstrakce (abstraction)
+1; Polymorfismus
 ANSWER_END
 
 QUESTION_START

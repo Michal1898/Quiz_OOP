@@ -6,16 +6,16 @@ import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Hello and welcome!");
+        printIntroduction();
 
         ArrayList<Question> questions = new ArrayList<Question>();
         ArrayList<Answer> answers = new ArrayList<Answer>();
-
 
         String filePath = "src\\FileManagement\\questions.txt";
         final String QUESTION_START = "QUESTION_START";
@@ -25,7 +25,6 @@ public class Main {
 
         System.out.println("Present Project Directory : " + System.getProperty("user.dir"));
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            System.out.println("Soubor otevren.");
             String line;
             String questionText = "";
             String answerText = "";
@@ -86,18 +85,6 @@ public class Main {
             System.out.println("Something went wrong!");
         }
 
-        // Print list of all questions in quiz and their solution
-        // only for testing
-//        for (Question question : questions) {
-//            System.out.println(question);
-//            for (Answer answer : answers) {
-//                if (question.hashCode() == answer.getHashCode()) {
-//                    System.out.println(answer);
-//                }
-//            }
-//
-//        }
-// Begin of test
         ArrayList<String> paragraphNameCoder= new ArrayList<String>();
         paragraphNameCoder.add("a");
         paragraphNameCoder.add("b");
@@ -139,7 +126,7 @@ public class Main {
             Collections.shuffle(possibleAnswers);
             System.out.println("\n");
             System.out.println("Otazka c: " + (a+1));
-            System.out.println(randomQuestion);
+            System.out.print(randomQuestion);
 
             for (Answer answer : possibleAnswers) {
                 int paragraphIndex=possibleAnswers.indexOf(answer);
@@ -148,11 +135,12 @@ public class Main {
             }
             Scanner userInput = new Scanner(System.in);
             if (randomQuestion.getType()=="Single choice"){
+                // Evalution of SingleChoice answer
                 possiblePoints++;
                 System.out.println("Oznac spravnou odpoved: ");
                 String yourAnswer = userInput.nextLine().toLowerCase().trim();
                 int answerIndex = paragraphNameCoder.indexOf(yourAnswer);
-                System.out.println("Answer index:" +answerIndex);
+                //System.out.println("Answer index:" +answerIndex);
                 Answer markedAnswer=possibleAnswers.get(answerIndex);
 
                 System.out.println("Tvoje odpoved: \n" + markedAnswer);
@@ -160,13 +148,65 @@ public class Main {
                     earnedPoints++;
                     System.out.println("Uhodl jsi. Gratuluji. ");
                 } else {
-                    System.out.println("Chybna odpoved: \n " + markedAnswer);
+                    System.out.println("Chybna odpoved. Cha Cha Chaa!");
                 }
+            }
+            else {
+                // evalution of multipleChoice answer
+                int thisQuestionPossiblePoints = 0;
+                int thisQuestionEarnedPoints = 0;
+                for (Answer answer : possibleAnswers) {
+
+                    if (answer.getAnswerCorrect()) {
+                        thisQuestionPossiblePoints++;
+                    }
+                }
+                possiblePoints+=thisQuestionPossiblePoints;
+
+                System.out.println("Zadej svoji odpoved (mozna je vice odpovedi spravnych)");
+                String yourAnswer = userInput.nextLine().toLowerCase().trim();
+                String[] yourAnswers= yourAnswer.split(" ");
+                for (String oneAnswer : yourAnswers) {
+                    int answerIndex = paragraphNameCoder.indexOf(oneAnswer);
+                    Answer markedAnswer=possibleAnswers.get(answerIndex);
+                    if(markedAnswer.getAnswerCorrect()){
+                        thisQuestionEarnedPoints++;
+                    } else {
+                        thisQuestionEarnedPoints-=2;
+                    }
+                }
+                earnedPoints+=thisQuestionEarnedPoints;
+                if (thisQuestionEarnedPoints==thisQuestionPossiblePoints) {
+                    System.out.println("Otazku jsi uspesne vyresil. Gratuluji");
+                } else {
+                    System.out.println("Chybna nebo neuplna odpoved!");
+                }
+
             }
             System.out.println("Prubezne skore:");
             System.out.println("Aktualne mas " + earnedPoints + " z " + possiblePoints + " moznych");
-            //System.out.println("To je " + (100*earnedPoints/possiblePoints)+ " %.");
+            if (possiblePoints!=0) {
+                System.out.println("To je " + (100*earnedPoints/possiblePoints)+ " %.");
+            }
         }
 
+    }
+
+    public static void printIntroduction(){
+        String filePath = "src\\FileManagement\\read_me.txt";
+
+        System.out.println("Present Project Directory : " + System.getProperty("user.dir"));
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            // end of file data processing
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        } catch (IOException e) {
+            System.out.println("Something went wrong!");
+        }
     }
 }
