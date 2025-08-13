@@ -6,6 +6,7 @@ import Questions.Question;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -100,7 +101,16 @@ public class Main {
 //
 //        }
 // Begin of test
-        String[] paragraphNameCoder={"a", "b", "c", "d", "e", "f"};
+        ArrayList<String> paragraphNameCoder= new ArrayList<String>();
+        paragraphNameCoder.add("a");
+        paragraphNameCoder.add("b");
+        paragraphNameCoder.add("c");
+        paragraphNameCoder.add("d");
+        paragraphNameCoder.add("e");
+        paragraphNameCoder.add("f");
+        paragraphNameCoder.add("g");
+
+
         System.out.println("\n");
         System.out.println("Kviz zacina!");
         int questionCount = 7;
@@ -133,7 +143,8 @@ public class Main {
             System.out.println("Otazka c: " + (a+1));
             System.out.println(randomQuestion);
             for (Answer answer : randomAnswers) {
-                String paragraphName = paragraphNameCoder[randomAnswers.indexOf(answer)];
+                int paragraphIndex=randomAnswers.indexOf(answer);
+                String paragraphName = paragraphNameCoder.get(paragraphIndex);
                 System.out.print(paragraphName + " ) " + answer);
             }
         }

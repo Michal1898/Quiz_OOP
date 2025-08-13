@@ -6,18 +6,20 @@ public class Question {
     private String question;
     private String type;
     private String difficulty;
-    private int hashCode=this.hashCode();
+    private int hashCode = this.hashCode();
+
     public Question(String question, String type, int difficulty) {
-        this.question=question;
+        this.question = question;
         if (type.toLowerCase().contains("single")) {
             this.type = "Single choice";
-        }else {
+        } else {
             this.type = "Multiple choice";
         }
         switch (difficulty) {
             case 1: {
                 this.difficulty = "Easy";
-                break; }
+                break;
+            }
             case 2: {
                 this.difficulty = "Medium";
                 break;
@@ -26,7 +28,7 @@ public class Question {
                 this.difficulty = "Hard";
                 break;
             }
-            default:{
+            default: {
                 this.difficulty = "None";
                 break;
             }
@@ -36,15 +38,20 @@ public class Question {
     @Override
     public int hashCode() {
         return Objects.hash(question, type, difficulty);
-        }
+    }
 
     public String getQuestion() {
         return this.question;
     }
 
 
+    @Override
+    public String toString() {
+        return (question + "\n" + "type: " + type + "\n" + "obtiznost: " + difficulty);
+    }
 
-@Override
-public String toString() {
-    return (question + "\n" + "type: " + type + "\n" + "obtiznost: " + difficulty ); }
+
+    public String getType() {
+        return this.type;
+    }
 }
